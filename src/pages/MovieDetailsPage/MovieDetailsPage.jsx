@@ -17,6 +17,7 @@ import {
   Path,
 } from './MovieDetailsPage.styled';
 import placeholderImg from '../../img/poster.jpg';
+import PropTypes from 'prop-types';
 
 const Cast = lazy(() => import('./../../components/Cast/Cast'));
 const Reviews = lazy(() => import('./../../components/Reviews/Reviews'));
@@ -80,4 +81,10 @@ export const MovieDetailsPage = () => {
      
  </>
      )
- }
+}
+ 
+export default MovieDetailsPage;
+
+MovieDetailsPage.propTypes = {
+    id: PropTypes.string,
+  }
