@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 export const Cast = ({ id }) => {
   const [cast, setCast] = useState(null);
   useEffect(() => {
-    Api.fetchMovieCast(id).then(setCast);
+    Api.fetchMovieCast(id).then((p) => setCast(p));
   }, [id]);
 
   return (
