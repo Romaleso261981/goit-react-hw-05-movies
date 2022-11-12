@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import * as Api from '../../api/movies-api'
-import SearchBar from '../../components/SearchBar/'
+import SearchBar from '../../components/SearchBar/SearchBar'
 import { StyledLink, SearchContainer } from './MoviesPage.styled';
 import PropTypes from 'prop-types';
 
