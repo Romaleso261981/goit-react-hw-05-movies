@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { StyledLink, List } from './HomePage.styled';
 import * as Api from '../../api/movies-api';
 import { imageDefaultLink } from '../../api/imageDefaultLink';
+import { Container } from '../../components/Container/Container';
 import  defaultImg  from '../../img/portrait_placeholder.png';
 import PropTypes from 'prop-types';
 
@@ -19,7 +20,7 @@ export const HomePage = () => {
       }
 console.log(movies);
     return (
-        <>
+        <Container>
             <h1>Trending now</h1>
             <List> 
             {movies.map(({ id, title, poster_path, state}) => {
@@ -30,7 +31,7 @@ console.log(movies);
             }
             )}
             </List>
-        </>
+        </Container>
     )
 }
 export default HomePage;
