@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { StyledLink } from './HomePage.styled';
 import * as Api from '../../api/movies-api';
+import { imageDefaultLink } from '../../api/imageDefaultLink';
+import  defaultImg  from '../../img/portrait_placeholder.png';
 import PropTypes from 'prop-types';
 
 export const HomePage = () => {
@@ -15,15 +17,16 @@ export const HomePage = () => {
     if (!movies) {
         return;
       }
-
+console.log(movies);
     return (
         <>
          <h1>Trending now</h1>
             <ul> 
-            {movies.map(({ id, title }) => {
-                return <li key={id}>
-                    <StyledLink to={`/movies/${id}`}>{title}</StyledLink>
-                </li>
+            {movies.map(({ id, title, poster_path, state}) => {
+                return <StyledLink to={`/movies/${id}`} state={state}>
+                        <img src={poster_path ? `${imageDefaultLink}${poster_path}` : defaultImg} alt={title} />
+                        <h3>{title}</h3>
+                    </StyledLink>
             }
             )}
             </ul>
@@ -33,5 +36,5 @@ export const HomePage = () => {
 export default HomePage;
 
 HomePage.propTypes = {
-    movies: PropTypes.array
+    movies: PropTypes.array.isRequired
 }
