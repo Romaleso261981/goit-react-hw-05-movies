@@ -20,7 +20,7 @@ export const HomePage = () => {
 console.log(movies);
     return (
         <>
-         <h1>Trending now</h1>
+            <h1>Trending now</h1>
             <List> 
             {movies.map(({ id, title, poster_path, state}) => {
                 return <StyledLink to={`/movies/${id}`} state={state}>

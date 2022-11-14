@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { Layout } from './components/Layout/Layout';
+import { Container } from './components/Container/Container';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
@@ -10,7 +11,7 @@ const MovieDetailsPage = lazy(() =>
 
 export const App = () => {
   return (
-    <>
+    <Container>
       <Layout />
             <Routes>
         <Route index path="/" element={<HomePage />} />
@@ -32,6 +33,6 @@ export const App = () => {
         />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
-    </>
+    </Container>
   );
 };
