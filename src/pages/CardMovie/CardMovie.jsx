@@ -1,16 +1,9 @@
-import { Link } from 'react-router-dom';
-import { imageDefaultLink } from '../../api/imageDefaultLink';
 import PropTypes from 'prop-types';
-import  defaultImg  from '../../img/poster.jpg';
+import {SearchBar} from '../../components/SearchBar/SearchBar'
 
 
-export function CardMovie({ state, id, title, poster }) {    
-    return (<li key={id}>
-                    <Link to={`/movies/${id}`} state={state}>
-                        <img src={poster ? `${imageDefaultLink}${poster}` : defaultImg} alt={title} />
-                        <h3>{title}</h3>
-                    </Link>
-            </li>)
+export function CardMovie() {    
+    return (<SearchBar />)
 }
 
 CardMovie.propTypes = {
@@ -19,3 +12,5 @@ CardMovie.propTypes = {
     title: PropTypes.string.isRequired,
     poster: PropTypes.string
 }
+
+export default CardMovie;

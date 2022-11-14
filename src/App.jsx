@@ -1,22 +1,28 @@
 import { Routes, Route } from 'react-router-dom';
-// import { lazy } from "react";
+import { lazy, Suspense } from 'react';
 import { HomePage } from './pages/HomePage/HomePage';
-import { SearchBar } from './components/SearchBar/SearchBar';
-import { AppBar } from './components/AppBar/AppBar';
-import Container from './components/Container/Container';
+import { Navigation } from './components/Navigation/Navigation';
+// import { CardMovie } from './pages/CardMovie/CardMovie';
 
-// const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const CardMovie = lazy(() => import('./pages/CardMovie/CardMovie'));
 // const MoviesPage = lazy(() => import("./pages/MoviesPage/MoviesPage"));
 // const MovieDetailsPage = lazy(() => import("./pages/MovieDetailsPage/MovieDetailsPage"));
 
 export const App = () => {
   return (
-    <Container>
-      <AppBar/>
-      <SearchBar />
+    <>
+      <Navigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route
+          path="/movies"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <CardMovie />
+            </Suspense>
+          }
+        />
       </Routes>
-    </Container>
+    </>
   );
 };
