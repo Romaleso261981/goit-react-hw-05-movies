@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { StyledLink } from './HomePage.styled';
+import { StyledLink, List } from './HomePage.styled';
 import * as Api from '../../api/movies-api';
 import { imageDefaultLink } from '../../api/imageDefaultLink';
 import  defaultImg  from '../../img/portrait_placeholder.png';
@@ -21,7 +21,7 @@ console.log(movies);
     return (
         <>
          <h1>Trending now</h1>
-            <ul> 
+            <List> 
             {movies.map(({ id, title, poster_path, state}) => {
                 return <StyledLink to={`/movies/${id}`} state={state}>
                         <img src={poster_path ? `${imageDefaultLink}${poster_path}` : defaultImg} alt={title} />
@@ -29,7 +29,7 @@ console.log(movies);
                     </StyledLink>
             }
             )}
-            </ul>
+            </List>
         </>
     )
 }

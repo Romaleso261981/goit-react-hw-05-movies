@@ -11,18 +11,9 @@ const MovieDetailsPage = lazy(() =>
 export const App = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Layout />} />
-        <Route
-          index
-          path="/"
-          element={
-            <Suspense fallback={<div>Loading...</div>}>
-              <HomePage />
-            </Suspense>
-          }
-        />
-
+      <Layout />
+            <Routes>
+        <Route index path="/" element={<HomePage />} />
         <Route
           path="/movies"
           element={

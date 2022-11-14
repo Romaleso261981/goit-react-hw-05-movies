@@ -1,12 +1,12 @@
 import {Container, Header} from "./Layout.styled";
-import {AppBar} from 'components/AppBar/AppBar';
+import {Navigation} from 'components/Navigation/Navigation ';
 import { Outlet } from 'react-router-dom';
 
 export const Layout = () => {
  return (
     <Container>
         <Header>
-            <AppBar />
+            <Navigation />
         </Header>
         <Outlet />
     </Container>
