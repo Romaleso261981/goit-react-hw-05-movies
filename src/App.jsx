@@ -1,27 +1,45 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import { HomePage } from './pages/HomePage/HomePage';
-import { Navigation } from './components/Navigation/Navigation';
-// import { CardMovie } from './pages/CardMovie/CardMovie';
+import { Layout } from './components/Layout/Layout';
 
-const CardMovie = lazy(() => import('./pages/CardMovie/CardMovie'));
-// const MoviesPage = lazy(() => import("./pages/MoviesPage/MoviesPage"));
-// const MovieDetailsPage = lazy(() => import("./pages/MovieDetailsPage/MovieDetailsPage"));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
+const MovieDetailsPage = lazy(() =>
+  import('./pages/MovieDetailsPage/MovieDetailsPage')
+);
 
 export const App = () => {
   return (
     <>
-      <Navigation />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Layout />} />
+        <Route
+          index
+          path="/"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <HomePage />
+            </Suspense>
+          }
+        />
+
         <Route
           path="/movies"
           element={
             <Suspense fallback={<div>Loading...</div>}>
-              <CardMovie />
+              <MoviesPage />
             </Suspense>
           }
         />
+        <Route
+          path="/movies/:movieId/*"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <MovieDetailsPage />
+            </Suspense>
+          }
+        />
+        <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </>
   );

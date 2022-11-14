@@ -44,6 +44,4 @@ export const Path = styled(NavLink)`
   border: 1px solid #ccc;
   text-decoration: none;
   width: fit-content;
-    &:hover {
-    background-color: #orange;
   `;

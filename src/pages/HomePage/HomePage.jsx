@@ -1,36 +1,37 @@
 import { useEffect, useState } from 'react';
-import { Outlet} from "react-router-dom";
-import { fetchPopularMovies } from '../../api/movies-api';
-import {CardMovie} from '../MoviesPage/MoviesPage'
-import {currenUrl} from '../../api'
+import { StyledLink } from './HomePage.styled';
+import * as Api from '../../api/movies-api';
+import PropTypes from 'prop-types';
 
 export const HomePage = () => {
-  const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState([]);
 
-  useEffect(() => {
-    fetchPopularMovies().then(data => setMovies(data));
-  }, []);
+    useEffect(() => {
+        Api.fetchPopularMovies().then(movies => setMovies(movies))
+        
+    }
+    , []);
 
-  if (!movies) {
-    return;
-  }
+    if (!movies) {
+        return;
+      }
 
-  return (
-    <>
-      <h2>Trending today</h2>
-        <CardMovie>
-                {movies.map(({ id, original_title, poster_path }) => {
-                    return <CardMovie
-                        key={id}
-                        state={currenUrl}
-                        id={id}
-                        title={original_title}
-                        poster={poster_path} />
-            })}
-            <Outlet />
-        </CardMovie>
-    </>
-  );
-};
+    return (
+        <>
+         <h1>Trending now</h1>
+            <ul> 
+            {movies.map(({ id, title }) => {
+                return <li key={id}>
+                    <StyledLink to={`/movies/${id}`}>{title}</StyledLink>
+                </li>
+            }
+            )}
+            </ul>
+        </>
+    )
+}
 export default HomePage;
 
+HomePage.propTypes = {
+    movies: PropTypes.array
+}
