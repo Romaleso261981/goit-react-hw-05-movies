@@ -1,55 +1,21 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
-import * as Api from '../../api/movies-api'
-import SearchBar from '../../components/SearchBar/SearchBar'
-import { StyledLink, SearchContainer } from './MoviesPage.styled';
-import PropTypes from 'prop-types';
-
-export const MoviesPage = () => {
-  const [movies, setMovies] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
-    const location = useLocation;
-    
-
-    const  hendleSearch = value => {
-        setSearchParams({ query: value })
-    }
-
-    useEffect(() => {
-        const query = searchParams.get('query') ?? '';
-        if (query) {
-            Api.fetchMovieDetails(query)
-            .then(movies => setMovies(movies));
-        }
-}, [searchParams])
+// import { Link } from 'react-router-dom';
+// // import { imageDefaultLink } from '../../api/imageDefaultLink';
+// // import PropTypes from 'prop-types';
+// import  defaultImg  from '../../img/poster.jpg';
 
 
-    return (
-        <SearchContainer>
-             <SearchBar onSearch={hendleSearch} />
-        {movies.length > 0 && (
-            <ul>
-            {movies.map(({id, title}) => (
-                <li key={id}>
-             <StyledLink to={`${id}`} state={{ from: location }}>
-              {title}
-            </StyledLink>
-                </li> 
-            ))}
-            </ul>
-        )} 
-        </SearchContainer>
-       
-)
+// export function CardMovie({ state, id, title, poster }) {    
+//     return (<li key={id}>
+//                     <Link to={`/movies/${id}`} state={state}>
+//                         <img src={poster ? `https://image.tmdb.org/t/p/w500${poster}` : defaultImg} alt={title} />
+//                         <h3>{title}</h3>
+//                     </Link>
+//             </li>)
+// }
 
-};
-
-export default MoviesPage;
-
-MoviesPage.propTypes = {
-    search: PropTypes.string,
-    movies: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string
-    }))
-}
+// CardMovie.propTypes = {
+//     state: PropTypes.string.isRequired,
+//     id: PropTypes.number.isRequired,
+//     title: PropTypes.string.isRequired,
+//     poster: PropTypes.string
+// }
