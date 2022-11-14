@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CastList = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 15px;
+  grid-gap: 20px;
 `;
 
 export const CastItem = styled.li`
