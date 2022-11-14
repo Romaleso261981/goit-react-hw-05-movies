@@ -1,7 +1,7 @@
-import { NavLink, Route, Routes, useParams, useLocation,} from 'react-router-dom';
+import { NavLink, Route, Routes, useParams, useLocation} from 'react-router-dom';
 import { useState, useEffect, Suspense, lazy } from 'react';
 import * as Api from './../../api/movies-api';
-import {Image, Label, OverviewText, Wrapper, Description, Title, Path } from './MovieDetailsPage.style';
+import {Image, Label, OverviewText, Wrapper, Description, Title, Path, Button } from './MovieDetailsPage.style';
 import placeholderImg from './../../img/poster.jpg';
 import PropTypes from 'prop-types';
 
@@ -50,12 +50,12 @@ export const MovieDetailsPage = () => {
       </Description>
       </Wrapper>
        <ul>
-        <li>
-          <NavLink to="cast" state={{ from: backLinkHref }}>Cast</NavLink>
-        </li>
-        <li>
+        <Button>
+        <NavLink to="cast" state={{ from: backLinkHref }}>Cast</NavLink>
+        </Button>
+        <Button>
           <NavLink to="reviews" state={{ from: backLinkHref }}>Reviews</NavLink>
-        </li>
+        </Button>
       </ul>    
        <Suspense fallback={<h1>LOADING THE ROUTE...</h1>}>
           <Routes>

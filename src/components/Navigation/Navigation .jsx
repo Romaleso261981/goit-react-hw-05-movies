@@ -1,12 +1,12 @@
-import {Link} from './Navigation.styled'
+import {Link, Header} from './Navigation.styled'
 
 export function Navigation() {
     return (
-        <header>            
+        <Header>            
             <nav>
                 <Link to='/'>Home</Link>
                 <Link to='/movies' >Movies</Link>
             </nav>         
-        </header>
+        </Header>
     )
 } 

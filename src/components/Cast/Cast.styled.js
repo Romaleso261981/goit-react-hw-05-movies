@@ -1,23 +1,17 @@
 import styled from 'styled-components';
 
-
 export const CastList = styled.ul`
-    margin-top: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    width: 950px;
-    `;
-
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+`;
 
 export const CastItem = styled.li`
-    max-width: 300px;
-    margin-right: 15px;
-    margin-bottom: 25px;
-    > img {
-        max-width: 300px;
-    }
-     > p{
-        font-size: 16px;
-        font-weight: 700;
-     }
-    `;
+  max-width: 300px;
+  margin-right: 15px;
+  margin-bottom: 25px;
+    > p {
+    font-size: 16px;
+    font-weight: 700;
+  }
+`;
