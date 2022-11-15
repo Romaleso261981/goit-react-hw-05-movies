@@ -1,12 +1,9 @@
-import { NavLink, Route, Routes, useParams, useLocation} from 'react-router-dom';
-import { useState, useEffect, Suspense, lazy } from 'react';
+import { NavLink, useParams, useLocation} from 'react-router-dom';
+import { useState, useEffect} from 'react';
 import * as Api from './../../api/movies-api';
 import {Image, Label, OverviewText, Wrapper, Description, Title, Path, Button } from './MovieDetailsPage.style';
 import placeholderImg from './../../img/poster.jpg';
 import PropTypes from 'prop-types';
-
-const Cast = lazy(() => import('./../../components/Cast/Cast'));
-const Reviews = lazy(() => import('./../../components/Reviews/Reviews'));
 
 const INIT_STATE = {
   title: '',
@@ -56,13 +53,7 @@ export const MovieDetailsPage = () => {
         <Button>
           <NavLink to="reviews" state={{ from: backLinkHref }}>Reviews</NavLink>
         </Button>
-      </ul>    
-       <Suspense fallback={<h1>LOADING THE ROUTE...</h1>}>
-          <Routes>
-              <Route path="cast" element={<Cast id={movieId} />} />
-              <Route path="reviews" element={<Reviews id={movieId} />} />
-          </Routes>
-       </Suspense>
+      </ul> 
        </>
     
 </>

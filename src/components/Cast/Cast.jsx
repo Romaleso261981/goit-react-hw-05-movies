@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 
 export const Cast = ({ id }) => {
+  console.log("Cast");
   const [cast, setCast] = useState(null);
   useEffect(() => {
     Api.fetchMovieCast(id).then((p) => setCast(p));
