@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { StyledLink, List } from './HomePage.styled';
 import * as Api from '../../api/movies-api';
+import Notiflix from 'notiflix';
 import { imageDefaultLink } from '../../api/imageDefaultLink';
 import { Container } from '../../components/Container/Container';
 import defaultImg from '../../img/portrait_placeholder.png';
@@ -12,7 +13,9 @@ export const HomePage = () => {
   useEffect(() => {
     try {
       const controller = new AbortController();
-      Api.fetchPopularMovies(controller).then(movies => setMovies(movies));
+      Api.fetchPopularMovies(controller).then(movies => setMovies(movies)).catch(error => {
+        Notiflix.Notify.failure(`Ошибка запроса: ${error.message}`, { position: "top-center", autoClose: 2000 } ); 
+    });
       return () => {
         controller.abort();
       };

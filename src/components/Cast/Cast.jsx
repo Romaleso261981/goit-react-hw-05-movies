@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { imageDefaultLink } from '../../api/imageDefaultLink';
+import Notiflix from 'notiflix';
 import * as api from '../../api/movies-api';
 import placeholderImage from '../../img/portrait_placeholder.png';
 import { CastList, CastItem } from './Cast.styled';
@@ -11,7 +12,9 @@ function Cast() {
 
   useEffect(() => {
     const controller = new AbortController();
-    api.fetchMovieCast(movieId, controller).then(response => setData(response.cast));
+    api.fetchMovieCast(movieId, controller).then(response => setData(response.cast)).catch(error => {
+      Notiflix.Notify.failure(`Ошибка запроса: ${error.message}`, { position: "top-center", autoClose: 2000 } ); 
+  });;
     return () => {
       controller.abort();
     };

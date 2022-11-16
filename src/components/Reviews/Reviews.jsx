@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { imageDefaultLink } from '../../api/imageDefaultLink';
+import Notiflix from 'notiflix';
 import * as api from '../../api/movies-api';
 import { CardReview, AuthorReview, Avatar } from './ReviewsStyled';
 
@@ -10,7 +11,9 @@ function Reviews() {
 
   useEffect(() => {
     const controller = new AbortController();
-    api.fetchMovieReviews(movieId, controller).then(data => setReviews(data.results));
+    api.fetchMovieReviews(movieId, controller).then(data => setReviews(data.results)).catch(error => {
+        Notiflix.Notify.failure(`Ошибка запроса: ${error.message}`, { position: "top-center", autoClose: 2000 } ); 
+    });;
     return () => {
       controller.abort();
     };
