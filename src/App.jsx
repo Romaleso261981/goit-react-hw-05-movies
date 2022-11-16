@@ -30,8 +30,8 @@ export const App = () => {
               <Suspense fallback={<div>Loading...</div>}>
                 <MovieDetailsPage />
               </Suspense> }>
-            <Route path='cast' element={<Suspense fallback={<div>Loading...</div>}><Cast /></Suspense> } />
-            <Route path='reviews' element={<Suspense fallback={<div>Loading...</div>}><Reviews /></Suspense>} />
+            <Route path='cast' element={<Cast /> } />
+            <Route path='reviews' element={<Reviews />} />
         </Route>  
         <Route path="*" element={<NotFound />} />
       </Routes>
