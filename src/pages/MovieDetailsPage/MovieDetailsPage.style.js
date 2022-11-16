@@ -55,6 +55,7 @@ export const Path = styled(NavLink)`
   margin-bottom: 20px;
   width: 100px;
   padding: 10px 0;
+  border: 1px solid black;
   border-radius: 5px;
   background-color: whitesmoke;
   box-shadow: 0px 0px 10px 1px blanchedalmond;

@@ -11,12 +11,12 @@ export const fetchPopularMovies = async (controller) => {
 
 export const fetchMovieReviews = async (id) => {
   const response = await axios.get(`movie/${id}/reviews?api_key=${API_KEY}`);
-  return response.data.results;
+  return response.data;
 }
 
 export const fetchMovieCast = async (id) => {
   const response = await axios.get(`movie/${id}/credits?api_key=${API_KEY}`);
-  return response.data.cast;
+  return response.data;
 }
 
 export const fetchMovieDetails = async (query, controller) => {

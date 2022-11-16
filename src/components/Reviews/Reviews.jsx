@@ -1,38 +1,39 @@
-import { useEffect, useState } from 'react';
-import * as Api from '../../api/movies-api';
-import PropTypes from 'prop-types';
+import { useState, useEffect } from "react"
+import { useParams } from "react-router-dom";
+import { imageDefaultLink } from '../../api/imageDefaultLink';
+import * as api from '../../api/movies-api';
+import {CardReview, AuthorReview, Avatar} from './ReviewsStyled'
 
 
-export const Reviews = ({ id }) => {
-  const [reviews, setReviews] = useState([]);
-  useEffect(() => {
-    Api.fetchMovieReviews(id).then((p) =>setReviews(p));
-  }, [id]);
+function Reviews () {
+    const [reviews, setReviews] = useState(null);
+    const {movieId} = useParams();
 
-  return (
-    <>
-      {reviews.length > 0 ? (
-        <ul>
-          {reviews.map(({ author, content, id }) => (
-            <li key={id}>
-              <div>
-                <div>
-                  <h3>Author: {author}</h3>
-                  <p>{content}</p>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>There is no reviews yet!</p>
-      )}
-    </>
-  );
-};
+    useEffect(() => {
+      api.fetchMovieReviews(movieId).then((data) => setReviews(data.results));
+    }, [movieId])   
+  
+  console.log(reviews);
+    
+    return  (reviews?.length > 0
+            ? <ul>
+            {reviews.map(({ id, author, content, author_details: { avatar_path: avatar } }) => {     
+                    console.log(avatar)
+                    return <li key={id}>
+                                <CardReview >
+                                    <AuthorReview>
+                                        <Avatar src={avatar?.slice(1, 6) === "https"
+                                            ? avatar.slice(1, avatar.length)
+                                            : `${imageDefaultLink}${avatar}`}
+                                            alt={author} />
+                                        <h3>{author}</h3>
+                                    </AuthorReview>
+                                    <p>{content}</p>
+                                </CardReview>
+                            </li>
+                })}
+            </ul>
+            : <div>No reviews</div>)       
+}
 
 export default Reviews;
-
-Reviews.propTypes = {
-  id: PropTypes.string.isRequired,
-}

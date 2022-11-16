@@ -1,42 +1,34 @@
-import { useEffect, useState } from 'react';
-import * as Api from '../../api/movies-api';
-import { CastList, CastItem} from './Cast.styled';
-import placeHolderPerson from './../../img/portrait_placeholder.png';
-import PropTypes from 'prop-types';
+import { useState, useEffect } from "react"
+import { useParams } from "react-router-dom";
+import { imageDefaultLink } from '../../api/imageDefaultLink';
+import * as api from '../../api/movies-api';
+import placeholderImage from '../../img/portrait_placeholder.png';
+import { CastList, CastItem } from './Cast.styled'
 
+function Cast () {
+    const [data, setData] = useState(null);
+  const movieId = useParams().movieId;
 
-export const Cast = ({ id }) => {
-  const [cast, setCast] = useState(null);
-  useEffect(() => {
-    Api.fetchMovieCast(id).then((p) => setCast(p));
-  }, [id]);
-
-  return (
-    <>
-      {cast && (
+    useEffect(() => {
+      api.fetchMovieCast(movieId).then((response) => setData(response.cast));
+    }, [movieId])
+    
+    console.log(data)
+    return ( data &&
         <CastList>
-          {cast.map(({ name, character, profile_path, id }) => (
-            <CastItem key={id}>
-                {profile_path && (
-                  <img src={`https://image.tmdb.org/t/p/w500/${profile_path}`} alt={name} />
-                )}
-                {!profile_path && (
-                  <img src={placeHolderPerson} alt={name} />
-                )}
-                  <p>{name}</p>
-                  <p>Character: {character}</p>
-            </CastItem>
-          ))}
+            {data.map((response) => {
+                return <CastItem key={response.id}>
+                            <div>
+                                <img src={response.profile_path ? `${imageDefaultLink}${response.profile_path}` : placeholderImage} alt={response.name} />
+                                <h3>{response.name}</h3>
+                                <p>{response.character}</p>
+                            </div>
+                        </CastItem>
+            })}
         </CastList>
-      )}
-    </>
-  );
-};
+        )
+}   
 
 export default Cast;
-
-Cast.propTypes = {
-    id: PropTypes.string.isRequired,
-  }
 
   

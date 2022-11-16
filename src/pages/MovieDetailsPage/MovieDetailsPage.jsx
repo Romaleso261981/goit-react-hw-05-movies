@@ -1,6 +1,6 @@
 import { NavLink, useParams, useLocation, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Suspense } from "react";
+import { Suspense } from 'react';
 import * as Api from './../../api/movies-api';
 import {
   Image,
@@ -39,6 +39,7 @@ export const MovieDetailsPage = () => {
   const { title, poster_path, vote_average, overview, genres, id } = movie;
   const movieGenres = genres.map(genre => genre.name).join(', ');
   const backLinkHref = location.state?.from ?? '/';
+  console.log(id);
 
   return (
     <>
@@ -80,8 +81,9 @@ export const MovieDetailsPage = () => {
             </NavLink>
           </Button>
         </ul>
-        <Suspense fallback={<div>Loading...</div>}><Outlet /></Suspense>
-        
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </>
     </>
   );

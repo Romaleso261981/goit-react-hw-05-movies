@@ -28,6 +28,7 @@ export const MoviesPage = () => {
     }
   }, [searchParams]);
 
+ 
   return (
     <Container>
       <SearchBar onSearch={handleSearch} />

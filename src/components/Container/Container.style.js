@@ -8,6 +8,6 @@ export const Wrap = styled.div`
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 30px;
-    background-color: blueviolet;
+    background-color: antiquewhite;
 `;
 
