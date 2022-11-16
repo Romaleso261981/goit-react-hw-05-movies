@@ -11,7 +11,7 @@ function Cast() {
 
   useEffect(() => {
     const controller = new AbortController();
-    api.fetchMovieCast(movieId).then(response => setData(response.cast));
+    api.fetchMovieCast(movieId, controller).then(response => setData(response.cast));
     return () => {
       controller.abort();
     };

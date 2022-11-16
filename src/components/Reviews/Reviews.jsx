@@ -10,19 +10,17 @@ function Reviews() {
 
   useEffect(() => {
     const controller = new AbortController();
-    api.fetchMovieReviews(movieId).then(data => setReviews(data.results));
+    api.fetchMovieReviews(movieId, controller).then(data => setReviews(data.results));
     return () => {
       controller.abort();
     };
   }, [movieId]);
 
-  console.log(reviews);
-
+ 
   return reviews?.length > 0 ? (
     <ul>
       {reviews.map(
         ({ id, author, content, author_details: { avatar_path: avatar } }) => {
-          console.log(avatar);
           return (
             <li key={id}>
               <CardReview>
