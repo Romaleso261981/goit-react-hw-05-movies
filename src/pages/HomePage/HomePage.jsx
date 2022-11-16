@@ -27,7 +27,7 @@ export const HomePage = () => {
       <List>
         {movies.map(({ id, title, poster_path, state }) => {
           return (
-            <StyledLink to={`/movies/${id}`} state={state}>
+            <StyledLink key={id} to={`/movies/${id}`} state={state}>
               <img
                 src={
                   poster_path ? `${imageDefaultLink}${poster_path}` : defaultImg

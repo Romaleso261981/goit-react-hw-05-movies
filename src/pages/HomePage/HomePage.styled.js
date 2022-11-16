@@ -2,14 +2,12 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const StyledLink = styled(Link)`
-  display: block;
-  margin: auto;
-  padding: 5px;
-  color: #000;
-  font-size: 1.2rem;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 10px;
+  list-style: none;
   text-decoration: none;
-  border: 1px solid black;
-  border-radius: 5px;
   box-shadow: 0px 0px 20px 1px blanchedalmond;
   &:hover {
     color: orangered;
@@ -28,7 +26,6 @@ export const List = styled.ul`
     grid-template-columns: repeat(4, 1fr);
   }
   @media (min-width: 1200px) {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
-  
-  `;
+`;
