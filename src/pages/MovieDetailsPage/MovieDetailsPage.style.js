@@ -48,12 +48,18 @@ export const OverviewText = styled.p`
 `;
 
 export const Path = styled(NavLink)`
-  display: block;
-  margin-bottom: 10px;
-  cursor: pointer;
-  background-color: #fff;
-  padding: 10px;
-  border: 1px solid #ccc;
+  display: inline-block;
+  text-align: center;
   text-decoration: none;
-  width: fit-content;
+  margin-left: 140px;
+  margin-bottom: 20px;
+  width: 100px;
+  padding: 10px 0;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  box-shadow: 0px 0px 10px 1px blanchedalmond;
+  &.active {
+    color: black;
+    background-color: orange;
+  }
 `;

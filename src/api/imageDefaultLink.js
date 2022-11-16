@@ -1,1 +1,1 @@
-export const imageDefaultLink = "https://image.tmdb.org/t/p/w300";
+export const imageDefaultLink = "https://image.tmdb.org/t/p/w500";
