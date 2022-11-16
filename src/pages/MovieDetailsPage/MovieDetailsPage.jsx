@@ -39,7 +39,6 @@ export const MovieDetailsPage = () => {
   const { title, poster_path, vote_average, overview, genres, id } = movie;
   const movieGenres = genres.map(genre => genre.name).join(', ');
   const backLinkHref = location.state?.from ?? '/';
-  console.log(id);
 
   return (
     <>
