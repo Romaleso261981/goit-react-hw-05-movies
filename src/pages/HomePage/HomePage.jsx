@@ -10,11 +10,17 @@ export const HomePage = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    const controller = new AbortController();
+    try {
+      const controller = new AbortController();
       Api.fetchPopularMovies(controller).then(movies => setMovies(movies));
       return () => {
         controller.abort();
       };
+    } catch (error) {
+      console.log((error));
+    }
+    
+      
   }, []);
 
   if (!movies) {

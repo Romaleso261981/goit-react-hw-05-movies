@@ -19,13 +19,17 @@ export const fetchMovieCast = async (id) => {
   return response.data.cast;
 }
 
-export const fetchMovieDetails = async (query) => {
-  const response = await axios.get(`search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1`);
+export const fetchMovieDetails = async (query, controller) => {
+  console.log("fetchMovieDetails");
+  const options = {signal: controller.signal };
+  const response = await axios.get(`search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1`, options);
   return response.data.results;
 }
 
-export const fetchMovieById = async (id) => {
-  const response = await axios.get(`movie/${id}?api_key=${API_KEY}`);
+export const fetchMovieById = async (id, controller) => {
+  console.log("fetchMovieById");
+  const options = {signal: controller.signal };
+  const response = await axios.get(`movie/${id}?api_key=${API_KEY}`, options);
   return response.data;
 }
 
