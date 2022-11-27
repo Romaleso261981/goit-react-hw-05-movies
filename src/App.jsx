@@ -18,14 +18,14 @@ export const App = () => {
       <Layout />
             <Routes>
         <Route index path="/" element={<h1>Helo</h1>} />
-        <Route path="/movies"
+        <Route path="movies"
           element={
             <Suspense fallback={<div>Loading...</div>}>
               <h1>movieId</h1>
             </Suspense>
           }
         />
-        <Route path='/movies/:movieId'
+        <Route path='movies/:movieId'
             element={
               <Suspense fallback={<div>Loading...</div>}>
                 <MovieDetailsPage />
