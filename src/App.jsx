@@ -17,11 +17,11 @@ export const App = () => {
     <Container>
       <Layout />
             <Routes>
-        <Route index path="/" element={<HomePage />} />
+        <Route index path="/" element={<h1>Helo</h1>} />
         <Route path="/movies"
           element={
             <Suspense fallback={<div>Loading...</div>}>
-              <MoviesPage />
+              <h1>movieId</h1>
             </Suspense>
           }
         />
