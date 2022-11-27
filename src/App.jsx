@@ -17,23 +17,23 @@ export const App = () => {
     <Container>
       <Layout />
             <Routes>
-        {/* <Route index path="/" element={<HomePage />} /> */}
-        {/* <Route path="/movies"
+        <Route index path="/" element={<HomePage />} />
+        <Route path="/movies"
           element={
             <Suspense fallback={<div>Loading...</div>}>
               <MoviesPage />
             </Suspense>
           }
-        /> */}
-        {/* <Route path='/movies/:movieId'
+        />
+        <Route path='/movies/:movieId'
             element={
               <Suspense fallback={<div>Loading...</div>}>
                 <MovieDetailsPage />
               </Suspense> }>
             <Route path='cast' element={<Cast /> } />
             <Route path='reviews' element={<Reviews />} />
-        </Route>   */}
-        {/* <Route path="*" element={<NotFound />} /> */}
+        </Route>  
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Container>
   );
