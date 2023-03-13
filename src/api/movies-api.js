@@ -1,15 +1,29 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://api.themoviedb.org/3';
+const API = axios.create({
+  baseURL: 'http://185.233.118.244:8080/user',
+  mode: 'cors',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+
+  // baseURL: "http://localhost:8080/user",
+});
+
+// axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 const API_KEY = '3290f7c502e8a1167263be702b28bdfc';
 
-export const fetchPopularMovies = async controller => {
-  const options = { signal: controller.signal };
-  const response = await axios.get(
-    `trending/movie/day?api_key=${API_KEY}`,
-    options
-  );
-  console.log(response.data.results);
+export const fetchPopularMovies = async () => {
+  const bodyRequest = {
+    month: '03',
+    type: 'done',
+    year: 2023,
+  };
+  console.log('fetchPopularMovies');
+  // const options = { signal: controller.signal };
+  const response = await API.get(`/api/finances/`, { params: bodyRequest });
+  console.log(response.data);
   return response.data.results;
 };
 

@@ -5,7 +5,7 @@ import { Container } from './components/Container/Container';
 import { NotFound } from './pages/NotFound/NotFound';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
-const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
+// const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
 const MovieDetailsPage = lazy(() =>
   import('./pages/MovieDetailsPage/MovieDetailsPage')
 );
@@ -16,23 +16,27 @@ export const App = () => {
   return (
     <Container>
       <Layout />
-            <Routes>
+      <Routes>
         <Route index path="/" element={<h1>Helo</h1>} />
-        <Route path="movies"
+        <Route
+          path="movies"
           element={
             <Suspense fallback={<div>Loading...</div>}>
-              <h1>movieId</h1>
+              <HomePage />
             </Suspense>
           }
         />
-        <Route path='movies/:movieId'
-            element={
-              <Suspense fallback={<div>Loading...</div>}>
-                <MovieDetailsPage />
-              </Suspense> }>
-            <Route path='cast' element={<Cast /> } />
-            <Route path='reviews' element={<Reviews />} />
-        </Route>  
+        <Route
+          path="movies/:movieId"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <MovieDetailsPage />
+            </Suspense>
+          }
+        >
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Container>
